@@ -1,0 +1,26 @@
+<p>sales-person-list </p>
+
+<table class="table table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Sales Volume</th>
+      <th>Max Quota?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let val of  salesPersonList" [ngClass]="{'highlight': val.salesVolume > 50000}">
+      <td>{{val.firstName}}</td>
+      <td>{{val.lastName}}</td>
+      <td>{{val.email}}</td>
+      <td>{{val.salesVolume | currency:'USD' }}</td>
+      <td>
+        <div *ngIf="val.salesVolume > 50000; else maxQuotaElse">Yes</div>
+        <ng-template #maxQuotaElse>No</ng-template>
+      </td>
+    </tr>
+  </tbody>
+
+</table>
